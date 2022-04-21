@@ -1,0 +1,9 @@
+__pycache__/
+challenge/
+*.py[cod]
+*$py.class
+*.log
+*.csv
+cines/
+museos/
+bibliotecas/
