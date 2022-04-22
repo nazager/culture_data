@@ -4,11 +4,14 @@ from data_wrangling import normal_all, data_proc_totals, data_proc_cines, data_p
 from sqlalchemy import create_engine
 from decouple import config
 
-URI = "postgresql://" + config("DB_USER") + ':' + config("DB_PASS") + '@' + config(
-    "DB_HOST") + ':' + config("DB_PORT") + '/' + config("DB_NAME")
 logging.basicConfig(filename='out.log', level=logging.INFO)
 
 if __name__ == "__main__":
+    try:
+        URI = "postgresql://" + config("DB_USER") + ':' + config("DB_PASS") + '@' + config(
+            "DB_HOST") + ':' + config("DB_PORT") + '/' + config("DB_NAME")
+    except:
+        logging.error("Invalid database configuration")
     path_list = get_csv(URLs)
     full_df = normal_all(path_list)
     df1 = data_proc_cultura(full_df)
