@@ -21,13 +21,14 @@ if __name__ == "__main__":
     conn = db_engine.connect()
     logging.info("DB connection accepted.")
     try:
-        conn.execute(open("db/db_cine_summry_table.sql").read())
         conn.execute(open("db/db_culture_table.sql").read())
+        conn.execute(open("db/db_cine_summry_table.sql").read())
         conn.execute(open("db/db_regs_count_table.sql").read())
     except Exception as e:
         logging.error("Error creating tables: {}".format(e))
     logging.info("Tables created successfully.")
     try:
+        pass
         df1.to_sql("cultura", con=conn, if_exists='replace', index=False)
         df2.to_sql("regs_count", con=conn, if_exists='replace', index=False)
         df3.to_sql("cine_summary", con=conn, if_exists='replace', index=False)
